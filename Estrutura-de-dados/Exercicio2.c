@@ -47,13 +47,15 @@ printf("1 - Exibir os clientes\n");
 printf("2 - Consultar um cliente \n");
 printf("3 - Sair do programa\n");
 scanf("%d",&instrucao);
+int encontrar = 0;
+int encontrarCod;
 
     switch (instrucao)
     {
     case 1 : 
         printf("--------Clientes cadastrados--------\n");
 
-        for(int i = 0; i <5; i++){
+        for(int i = 0; i <3; i++){
             printf("O codigo do cliente e: %d \n", clientes[i].codCliente);
             printf("O cliente possui %d anos \n", clientes[i].idade);
             printf("Ele recebe %.2f reais \n",clientes[i].salario);
@@ -61,7 +63,22 @@ scanf("%d",&instrucao);
         }
         break;
     case 2 :
-        
+        printf("Digite o codigo do cliente:");
+        scanf("%d",&encontrarCod);
+        for(int i = 0; i<5; i++){
+            if(encontrarCod == clientes[i].codCliente){
+                printf("O cliente possui %d anos \n", clientes[i].idade);
+                printf("Ele recebe %.2f reais \n",clientes[i].salario);
+                encontrar= 1;
+            }
+        }
+            if(encontrar == 0){
+                printf("O cliente nao esta cadastrado");
+            }
+        break;
+    case 3 : 
+    
+        break;
             
         break;
     default:
