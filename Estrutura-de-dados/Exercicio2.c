@@ -32,7 +32,8 @@ int main(){
 struct Clientes clientes[5];
 int instrucao;
 
-    for(int i = 0; i < 5 ;i ++){
+    for(int i = 0; i < 5; i ++){
+
         printf("Digite o codigo do cliente %d: \n",i+1);
         scanf("%d",&clientes[i].codCliente);
         printf("Agora digite a idade do cliente: \n");

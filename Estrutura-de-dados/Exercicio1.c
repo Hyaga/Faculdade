@@ -21,7 +21,7 @@ struct Automovel automovel[3];
 
     for(int i = 0; i <3 ; i++){
         printf("Digite o modelo do carro %d que voce deseja cadastra: \n",i+1);
-        scanf("%s",&automovel[i].modelo);
+        scanf("%s",automovel[i].modelo);
         printf("Agora cadastre o ano do modelo: \n");
         scanf("%d",&automovel[i].ano);
         printf("Por fim agora digite o valor do automovel:\n");
