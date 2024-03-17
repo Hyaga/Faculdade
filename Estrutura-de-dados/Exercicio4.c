@@ -82,15 +82,15 @@ int main(){
         scanf("%f",&salario);
         printf("\nAgora escolha aonde o seu funcionario estara localizado na lista 1(inicio da lista) 2(final da lista):");
         scanf("%d",&lugarNaLista);
+        if(lugarNaLista == 1){
+            primeiroNoDaLista = inserirInicioLista(primeiroNoDaLista,idade,salario);
+        }else if(lugarNaLista == 2){
+                primeiroNoDaLista = inserirFinalDaLista(primeiroNoDaLista,idade,salario);
+          }else{
+                    printf("Digite um valor valido por favor digite os numeros pedido !");
+            }
     }
 
-    if(lugarNaLista == 1){
-        primeiroNoDaLista = inserirInicioLista(primeiroNoDaLista,idade,salario);
-    }else if(lugarNaLista == 2){
-            primeiroNoDaLista = inserirFinalDaLista(primeiroNoDaLista,idade,salario);
-     }else{
-                printf("Digite um valor valido por favor digite os numeros pedido !");
-      }
 
       ImprimirLista(primeiroNoDaLista);
 }
