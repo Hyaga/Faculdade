@@ -65,6 +65,18 @@ struct noLista *remove(struct noLista *InicioLista, int ElementoParaRemover){ //
     return InicioLista;
 }
 
+struct noLista *procurarElementosDaLista(struct noLista *InicioLista,int ProcurarElemento){
+    struct noLista *PercorreLista;
+    PercorreLista = InicioLista; // copia o inicio da lista 
+
+        while(PercorreLista != NULL){ // enquanto existir um NO na lista o while ira funcionar 
+            if(PercorreLista -> informacao == ProcurarElemento) // se o percorreLista estiver apontando para o conteudo do ProcurarElemento significa que ele encontrou o No desejado 
+                return PercorreLista;   // e a linha responsavel por retornar o No encontrado
+                else PercorreLista = PercorreLista -> proximoNo ; // se o Percorre lista nao estiver apontando para o conteudo do ProcurarElemento ele continuara buscando o No na lista 
+        }
+            return NULL; // caso o codigo saia do while significa que o NO não foi encontrado na lista o que resultara no returno de um dado NULL
+};
+
 
 void ImprimirLista(struct noLista *InicioDaLista){
      struct noLista *NoAtual   = InicioDaLista;
