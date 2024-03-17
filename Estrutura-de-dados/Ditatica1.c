@@ -38,8 +38,32 @@ struct noLista *inserirFinalDaLista(struct noLista* InicioLista, int NovoNumero)
 
      return InicioLista; 
 
+
 };
 
+struct noLista *remove(struct noLista *InicioLista, int ElementoParaRemover){ // remove algo da lista
+
+    struct noLista *NoAnterior = NULL; // aponta para o ponteiro anterior
+    struct noLista *PercorreLista = InicioLista; // faz uma copia do inicio da lista para a variavel percorrer
+
+        while(PercorreLista != NULL && PercorreLista -> proximoNo){
+            NoAnterior = PercorreLista; // armazena a memoria do no anterior 
+            PercorreLista = PercorreLista -> proximoNo; // e a linha que percorre a lista 
+        }
+
+        if(PercorreLista == NULL) // quando o PercorreLista for igual a NULL significa que não a mais nada na lista
+            return InicioLista;
+
+        if(PercorreLista == NULL){ // quando o PercorreLista for igual a NULL ele retornara para o Inicio da lista 
+            InicioLista = PercorreLista -> proximoNo; // e quando isso acontecer declaramos que o inicio da lista apontara para o proximoNo para atualizarmos a lista
+        }else{
+            NoAnterior -> proximoNo = PercorreLista -> proximoNo; // essa linha liga o NO anterior com o elemento que sera removido
+         }
+
+    free(PercorreLista); // a função free libera o espaço de memoria do NO que sera removido "Apaga o NO da memoria"
+
+    return InicioLista;
+}
 
 
 void ImprimirLista(struct noLista *InicioDaLista){
