@@ -110,7 +110,7 @@ int qtde = contarElementos(topoPilha);
              ImprimirPilha(topoPilha);
           }else if(lugarNaLista == 4){
              qtde = contarElementos(topoPilha);
-            printf("\n\n Quantidade de elementos da pilha e %d",qtde);;
+            printf("\nQuantidade de elementos da pilha e :%d \n",qtde);
            }else{
                printf("Voce saiu do programa");
              }
