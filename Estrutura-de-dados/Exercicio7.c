@@ -52,8 +52,8 @@ struct noPilha *Desempilhar(struct noPilha *topoPilha){
     return topoPilha;
 }
 
-int contarElementos(struct noPilha *InicioFila){
-    struct noPilha *noAtual =InicioFila; // Esta linha e responsavel por copiar o endereço do primeiro no da Pilha
+int contarElementos(struct noPilha *InicioPilha){
+    struct noPilha *noAtual =InicioPilha; // Esta linha e responsavel por copiar o endereço do primeiro no da Pilha
     int contador = 0;
     
     while (noAtual != NULL){ // Esta linha e responsavel por percorrer a pilha até encontrar o ultimo nó que sera = NULL

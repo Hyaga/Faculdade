@@ -19,7 +19,7 @@ struct noLista *inserirInicioLista(struct noLista *InicioDaLista,int codCliente,
     struct noLista *novoNo = (struct noLista*) malloc(sizeof(struct noLista)); // verifica a memoria a ser alocada
     novoNo -> codCliente = codCliente; // Esta linha e responsavel por inserir informaçoes ao nó
     novoNo -> salario = salario; // Esta linha e responsavel por  inserir as informaçoes ao nó
-    novoNo -> proximoNo = InicioDaLista; // Esta linha e responsavel por apontar o campo "proximo" do novo nó para o local que o InicioPilha apontava
+    novoNo -> proximoNo = InicioDaLista; // Esta linha e responsavel por apontar o campo "proximo" do novo nó para o local que o InicioDaLista apontava
 
     return novoNo;
 };
@@ -45,7 +45,7 @@ struct noLista *inserirFinalDaLista(struct noLista* InicioLista,int codCliente,f
         novoNo -> codCliente = codCliente; // Esta linha e responsavel por  inserir as informaçoes ao nó
         novoNo -> salario = salario; // Esta linha e responsavel por inserir as informaçoes ao nó
         novoNo -> proximoNo  = InicioLista; // Esta linha e responsavel por apontar o o campo proximo do novo no para o local que o InicioLista apontava
-        InicioLista = novoNo; // // Esta linha e responsavel por apontar o inicio da lista para o novo nó
+        InicioLista = novoNo; // Esta linha e responsavel por apontar o inicio da lista para o novo nó
      }
 
      return InicioLista; 
@@ -88,7 +88,7 @@ struct noLista *procurarElementosDaLista(struct noLista *InicioLista,int Procura
 };
 
 void ImprimirLista(struct noLista *InicioDaLista){
-    struct noLista *NoAtual = InicioDaLista;
+    struct noLista *NoAtual = InicioDaLista; // Esta linha e responsavel por copiar o endereço do primeiro no da lista
     printf("\n -- Conteudo da Lista --");
     while(NoAtual != NULL){
         printf("[Codigo cliente: %d  Salario cliente:%.2f] ->",NoAtual -> codCliente, NoAtual -> salario );// Esta linha e responsavel por mostrar as informaçao do nó

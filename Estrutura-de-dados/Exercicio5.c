@@ -30,10 +30,10 @@ struct noLista {
 struct noLista *inserirInicioLista(struct noLista *InicioDaLista,int codCliente, int idade,float salario){
 
     struct noLista *novoNo = (struct noLista*) malloc(sizeof(struct noLista)); // verifica a memoria a ser alocada
-    novoNo -> codCliente = codCliente;
-    novoNo -> idade= idade;
-    novoNo -> salario = salario;
-    novoNo -> proximoNo = InicioDaLista;
+    novoNo -> codCliente = codCliente; // Esta linha e responsavel por inserir as informaçoes ao nó
+    novoNo -> idade= idade; // Esta linha e responsavel por inserir as informaçoes ao nó
+    novoNo -> salario = salario; // Esta linha e responsavel por inserir as informaçoes ao nó
+    novoNo -> proximoNo = InicioDaLista; // Esta linha e responsavel por apontar o campo "proximo" do novo nó para o local que o InicioDaLista apontava
 
     return novoNo;
 };
@@ -50,32 +50,33 @@ struct noLista *inserirFinalDaLista(struct noLista* InicioLista,int codCliente, 
         }
 
         novoNo -> codCliente = codCliente;// insere a nova informação e para isso temos que declarar na função
-        novoNo -> idade = idade;   
-        novoNo -> salario = salario;
-        novoNo -> proximoNo = PercorreLista -> proximoNo;
-        PercorreLista -> proximoNo = novoNo;
+        novoNo -> idade = idade; // Esta linha e responsavel por inserir as informaçoes ao nó
+        novoNo -> salario = salario; // Esta linha e responsavel por inserir as informaçoes ao nó
+        novoNo -> proximoNo = PercorreLista -> proximoNo; // Esta linha e responsavel por apontar para o proxino nó que o ultimo estava apontando que e = NULL
+        PercorreLista -> proximoNo = novoNo; // Esta linha e responsavel por fazer com que o ultimo nó que agora é penultimo aponte para o novo nó
 
     }else{
 
-        novoNo -> codCliente = codCliente;
-        novoNo -> idade = idade;
-        novoNo -> salario = salario;
-        novoNo -> proximoNo  = InicioLista;
-        InicioLista = novoNo;
+        novoNo -> codCliente = codCliente; // Esta linha e responsavel por inserir as informaçoes ao nó
+        novoNo -> idade = idade;// Esta linha e responsavel por inserir as informaçoes ao nó
+        novoNo -> salario = salario;// Esta linha e responsavel por inserir as informaçoes ao nó
+        novoNo -> proximoNo  = InicioLista; // Esta linha e responsavel por apontar o o campo proximo do novo no para o local que o InicioLista apontava
+        InicioLista = novoNo; // Esta linha e responsavel por apontar o inicio da lista para o novo nó
      }
 
      return InicioLista; 
 
 };
 
+
 void ImprimirLista(struct noLista *InicioDaLista){
-    struct noLista *NoAtual = InicioDaLista;
+    struct noLista *NoAtual = InicioDaLista; // Esta linha e responsavel por copiar o endereço do primeiro no da lista
     printf("\n -- Conteudo da Lista --");
     while(NoAtual != NULL){
-        printf("[Codigo cliente: %d Idade cliente:%d  Salario cliente:%.2f] ->",NoAtual -> codCliente,NoAtual -> idade, NoAtual -> salario );
-        NoAtual = NoAtual-> proximoNo;
+        printf("[Codigo cliente: %d  Salario cliente:%.2f] ->",NoAtual -> codCliente, NoAtual -> salario );// Esta linha e responsavel por mostrar as informaçao do nó
+        NoAtual = NoAtual-> proximoNo; // Esta linha e responsavel por apontar para o proximo no
     }
-    printf("3NULL");
+    printf("NULL\n");
 } 
 
 int main(){
@@ -89,6 +90,7 @@ int codCliente;
 
 printf("Quantos clientes voce deseja cadastrar ");
 scanf("%d",&quantidadeCadastrada);
+do{
  for(int i = 0; i < quantidadeCadastrada; i++ ){
         printf("Qual e o codigo do cliente:");
         scanf("%d",&codCliente);
@@ -109,13 +111,14 @@ scanf("%d",&quantidadeCadastrada);
             PrimeiroDaLista = inserirFinalDaLista(PrimeiroDaLista,codCliente,idade,salario);
          }else if(lugarNaLista == 3){
              ImprimirLista(PrimeiroDaLista);
-          }else if(lugarNaLista == 4){
+          }else{
               printf("Voce saiu do programa");
-           }else{
-               printf("Digite um valor valido");
-             }
+           }
 
  }
+
+}while (lugarNaLista != 4 && quantidadeCadastrada < quantidadeCadastrada);
+
 
 
 
