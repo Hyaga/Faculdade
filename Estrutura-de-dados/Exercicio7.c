@@ -27,7 +27,7 @@ struct noPilha *Empilhar(struct noPilha *InicioPilha, int novoNumero,int codClie
     struct noPilha *novoNo = (struct noPilha*) malloc(sizeof(struct noPilha)); // verifica a memoria a ser alocada
     novoNo -> noAnterior = NULL; // Esta linha e responsavel por fazer o noAnterior será NULL, pois agora ele será o primeiro da pilha
     novoNo -> informacao = novoNumero; //Esta linha e responsavel por Inserir as informação para um novo nó
-    novoNo -> codCliente = codCliente; //
+    novoNo -> codCliente = codCliente; 
     novoNo -> idade= idade;
     novoNo -> salario = salario;
     novoNo -> noProximo = InicioPilha; // Esta linha e responsavel por apontar o campo "proximo" do novo nó para o local que o InicioPilha apontava
@@ -118,5 +118,3 @@ int qtde = contarElementos(topoPilha);
     }while(lugarNaLista != 5);
            
 }
-
-
