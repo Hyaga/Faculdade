@@ -117,7 +117,7 @@ do{
 
  }
 
-}while (lugarNaLista != 4 && quantidadeCadastrada < quantidadeCadastrada);
+}while (lugarNaLista != 4);
 
 
 
