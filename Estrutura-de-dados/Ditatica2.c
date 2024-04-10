@@ -25,9 +25,9 @@ struct noFila *InserirNaFila(struct noFila *InicioFila, int codCliente,int idade
     
     }
     novoNo -> noAnterior = PercorreFila; // Esta linha e responsavel por apontar o campo noAnterior para o no PercorreFila
-    novoNo -> codCliente = codCliente;
-    novoNo -> idade = idade;
-    novoNo -> salario = salario;
+    novoNo -> codCliente = codCliente; //Esta linha e responsavel por colocar as informações nos nos
+    novoNo -> idade = idade; //Esta linha e responsavel por colocar as informações nos nos
+    novoNo -> salario = salario; //Esta linha e responsavel por colocar as informações nos nos
     novoNo -> proximoNo = NULL; // Esta linha vai fazer o novoNo ser o ultimo da Fila
 
     if(InicioFila == NULL)// A fila estava vazia
@@ -50,11 +50,11 @@ struct noFila *removerDaFila(struct noFila *InicioFila){
 
 };  
 
-void ImprimirPilha(struct noFila *InicioFila){
+void ImprimirFila(struct noFila *InicioFila){
     struct noFila *noAtual = InicioFila;
     
     while(noAtual != NULL){
-        printf("[O codigo do cliente e:%d] - [A idade do cliente e: %d] - [O salario do cliente e: %.2f]",noAtual -> codCliente,noAtual -> idade, noAtual ->salario); // Esta linha e responsavel por mostrar as informaçao do nó
+        printf("[O codigo do cliente e:%d] - [A idade do cliente e: %d] - [O salario do cliente e: %.2f]\n",noAtual -> codCliente,noAtual -> idade, noAtual ->salario); // Esta linha e responsavel por mostrar as informaçao do nó
         noAtual = noAtual-> proximoNo; // Esta linha e responsavel por apontar para o proximo no da fila
    
     }
