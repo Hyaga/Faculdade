@@ -12,7 +12,6 @@ os comandos de saida (printf) podem ser usados como cout <<
 Usarei essa biblioteca para facilitar a criação de tabelas hash, porem usando printf e scanf o resultado e o mesmo*/
 
 struct noFila {
-    int codCliente;
     int idade;
     char *nome;
     struct noFila *noProximo;
