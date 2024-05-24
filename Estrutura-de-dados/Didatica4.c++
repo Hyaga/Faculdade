@@ -109,7 +109,7 @@ int main(){
 
         while(chave != -1){
 
-            printf("Digite a chave que voce deseja procurar:");
+            printf("\nDigite a chave que voce deseja procurar:");
             cin >> chave;
 
             resultado = procurarNaTabelaHash(TabelaHash,chave,tamahoTabelaHash);
