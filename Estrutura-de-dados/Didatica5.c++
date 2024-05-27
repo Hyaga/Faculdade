@@ -120,24 +120,24 @@ int main(){
              }else{
                 printf(" -- Chave ja existe -- \n");
               }
-
+        }
 
         printf(" Buscar na tabela Hash \n");
         chave = 0;
 
         while(chave != -1){
 
-            printf("\nDigite a chave que voce deseja procurar:");
+            printf("Digite a chave que voce deseja procurar: \n");
             cin >> chave;
 
             resultado = ProcurarNaTabelaHash(TabelaHash,chave,tamahoTabelaHash);
             if(resultado >= 0){
-                printf("\n A chave procurada esta no indice %d \n",resultado);
+                printf("A chave procurada esta no indice %d \n",resultado);
                 imprimirTabelaHash(TabelaHash,tamahoTabelaHash);
-            }else printf("\n Chave nao localizada");
+            }else printf("Chave nao localizada \n");
 
         }
 
         return 1;
         }
-}
+
