@@ -100,21 +100,21 @@ int main(){
             }else if(resultado == -2){
                 printf(" \n-- Nao existe espaco livre na tabela hash -- \n");
              }else{
-                printf(" -- Chave ja existe -- \n");
+                printf(" \n  -- Chave ja existe -- \n");
               }
-
+        }
 
         printf(" Buscar na tabela Hash \n");
         chave = 0;
 
         while(chave != -1){
 
-            printf("\nDigite a chave que voce deseja procurar:");
+            printf("Digite a chave que voce deseja procurar: \n");
             cin >> chave;
 
             resultado = procurarNaTabelaHash(TabelaHash,chave,tamahoTabelaHash);
             if(resultado >= 0){
-                printf("\n A chave procurada esta no indice %d \n",resultado);
+                printf("A chave procurada esta no indice %d \n",resultado);
                 imprimirTabelaHash(TabelaHash,tamahoTabelaHash);
             }else printf("\n Chave nao localizada");
 
@@ -122,4 +122,4 @@ int main(){
 
         return 1;
         }
-}
+
