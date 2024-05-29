@@ -43,7 +43,7 @@ int main() {
     const int TamanhoTabela = 10;
     int chave;
     string codigo;
-    float disciplina;
+    float salario;
     int opcao;
 
     do {
@@ -51,7 +51,7 @@ int main() {
         cout << "1. Adicionar disciplina" << endl;
         cout << "2. Imprimir disciplinas cadastradas" << endl;
         cout << "0. Sair" << endl;
-        cout << "Escolha uma opçao: ";
+        cout << "Escolha uma opcao: ";
         cin >> opcao;
 
         switch (opcao) {
@@ -61,7 +61,7 @@ int main() {
                 cout << "Digite o RG: ";
                 cin >> codigo;
                 cout << "Digite o salario da pessoa: ";
-                cin >> disciplina;
+                cin >> salario;
                 {
                     Materias mat;
                     mat.codigo = codigo;
