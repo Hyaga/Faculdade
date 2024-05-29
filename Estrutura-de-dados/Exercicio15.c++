@@ -29,7 +29,7 @@ int main() {
         cout << "1. Adicionar disciplina" << endl;
         cout << "2. Imprimir disciplinas cadastradas" << endl;
         cout << "0. Sair" << endl;
-        cout << "Escolha uma opçao: ";
+        cout << "Escolha uma opcao: ";
         cin >> opcao;
 
         switch (opcao) {
