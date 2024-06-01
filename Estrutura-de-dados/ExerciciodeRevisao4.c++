@@ -13,158 +13,157 @@ mensagem: “Funcionário inexistente”.
 */
 
 #include <stdio.h>
-#include<stdlib.h>
-#include<iostream>
+#include <stdlib.h>
+#include <iostream>
 using namespace std;
 
-
-struct noTabela{
-
-    int codigo;
-    float salario;
+struct Registro {// Essa struct vai ser responsavel por guardar as informações inseridas
+    int chave;
     int idade;
-
+    float salario;
 };
 
-
-int FuncaoHash(int chave, int tamanhoTabelaHash){
-    int indice = chave % tamanhoTabelaHash; // Esta linha e responsavel por definir as posiçoes da tabela Hash que necessitam da % para serem declaradas
-
+int FuncaoHash(int chave, int tamanhoTabelaHash) {
+    int indice = chave % tamanhoTabelaHash;// Esta linha e responsavel por criar uma tabela e atribuir ela a uma var
+// esta variavel vai declarar o tamanho da tabela no main   
     return indice;
 }
 
-int FuncaoHashSegundoPasso(int chave,int tamanhoTabelaHash){
-
-    int indice = (1+(chave % (tamanhoTabelaHash)));
-    return indice;
-
-}
-
-int FuncaoReHash(int i , int k, int tamanhoTabelaHash){
-    int indice = (i+k) % tamanhoTabelaHash;
+int FuncaoHashSegundoPasso(int chave, int tamanhoTabelaHash) {
+    int indice = (1 + (chave % (tamanhoTabelaHash)));//Esta linha sera responsavel por criar um novo indice  para a tabela hash
+    // este novo indice ira somar +1 no indice usando como base a chave e a variavel tamanho Tabela
     return indice;
 }
 
-int inserirNaTabelaHash(int TabelaHash[], int chave, int tamanhoTabelaHash, int idade,float salario, int codigo){
+int FuncaoReHash(int i, int k, int tamanhoTabelaHash) {
+    int indice = (i + k) % tamanhoTabelaHash;// Esta linha sera responsavel por criar um novo indice  para a tabela hash
+    // este novo indice ira somar +1 no indice usando como base a funçãoHash e a funçãohash segundo passo
+    return indice;
+}
 
-    int indice,i,k;
-    i = FuncaoHash(chave,tamanhoTabelaHash);
-    k - FuncaoHashSegundoPasso(chave,tamanhoTabelaHash);
-    indice = FuncaoReHash(i,k,tamanhoTabelaHash);
+int inserirNaTabelaHash(Registro TabelaHash[], int chave, int idade, float salario, int tamanhoTabelaHash) {
+    int indice, i, k;
+    i = FuncaoHash(chave, tamanhoTabelaHash);
+    k = FuncaoHashSegundoPasso(chave, tamanhoTabelaHash);
+    indice = FuncaoReHash(i, k, tamanhoTabelaHash);
 
-     while(TabelaHash[indice] != -1){
-        if(indice == tamanhoTabelaHash){ // Esta linha e responsavel por fazer a comparação de quando a tabela estiver cheia ela parar
-            indice = -2; 
+    while (TabelaHash[indice].chave != -1) {// Esta linha sera a responsavel por buscar a proxima posição livre
+        if (indice == tamanhoTabelaHash) {// A tabela esta cheia
+            indice = -2;
             break;
         }
 
-        if(TabelaHash[indice] == chave){ // Quando for digitado uma chave ja existente o comando para 
+        if (TabelaHash[indice].chave == chave) { // O elemento digitado ja existe 
             indice = -1;
             break;
         }
 
         indice++;
     }
-    
-    if(indice >= 0){ // Esta linha e responsavel por armazenar a chave na posição livre quando ela for encontrada (exeto = -1 ou -2)
-        TabelaHash[indice] = chave;
+
+    if (indice >= 0) { // Aqui usamos o conceito de classes para inserir a idade salario e chave nas posições livres (excetos no indice = -1 ou -2)
+        TabelaHash[indice].chave = chave;
+        TabelaHash[indice].idade = idade;
+        TabelaHash[indice].salario = salario;
     }
 
     return indice;
-
 }
 
-
-int ProcurarNaTabelaHash(int TabelaHash[],int chave, int tamanhoTabelaHash){
-
+int ProcurarNaTabelaHash(Registro TabelaHash[], int chave, int tamanhoTabelaHash) {
     int indice;
-    int i;
-    int k;
-    i = FuncaoHash(chave,tamanhoTabelaHash);
-    k - FuncaoHashSegundoPasso(chave,tamanhoTabelaHash);
-    indice = FuncaoReHash(i,k,tamanhoTabelaHash);
+    int i, k;
+    i = FuncaoHash(chave, tamanhoTabelaHash);
+    k = FuncaoHashSegundoPasso(chave, tamanhoTabelaHash);
+    indice = FuncaoReHash(i, k, tamanhoTabelaHash);
 
-    while(TabelaHash[indice] != chave){ // Esta linha sera a responsavel por procurar a chave que vai estar na posição i
-
-        if(TabelaHash[indice] == -1){ // Se a comparação nao achar a chave ela retornara uma posição vazia
+    while (TabelaHash[indice].chave != chave) {// Esta chave procura a chave a partir da posição i
+        if (TabelaHash[indice].chave == -1) { // Não achou a chave pois existe uma posição vazia
             indice = -1;
             break;
         }
-        
 
-        if(indice == tamanhoTabelaHash){ // Retornara um resultado pois a comparação chegou ao final da tabela e nao encontrou a chave
+        if (indice == tamanhoTabelaHash) {// retorna pois chegou no final da tabela e nao encontrou uma chave
             indice = -2;
             break;
         }
 
         indice++;
-
     }
 
-    return indice; 
+    return indice;
 }
 
-void imprimirTabelaHash(int TabelaHash[], int tamanhoTabelaHash, int idade, float salario, int codigo){
-
-    for(int i = 0; i < tamanhoTabelaHash; i++){
-        printf("[%d] %d", i, TabelaHash[i]);
+void imprimirTabelaHash(Registro TabelaHash[], int tamanhoTabelaHash) {
+    for (int i = 0; i < tamanhoTabelaHash; i++) {
+        printf("[%d] Chave: %d | Idade: %d | Salario: %.2f\n", i, TabelaHash[i].chave, TabelaHash[i].idade, TabelaHash[i].salario);
     }
 
-    printf("Fim");
+    printf("Fim\n");
 }
 
-int main(){
+int main() {
+    int tamanhoTabelaHash = 10;
+    Registro *TabelaHash = (Registro *)malloc(sizeof(Registro) * tamanhoTabelaHash);// Aqui chamamos o registro para atribuir os dados salario idade e chave
 
-    int tamahoTabelaHash = 10; // alocação estatica da tabelaHahs[tamanhoTabela]
-    int *TabelaHash = (int*)malloc(sizeof(int) * tamahoTabelaHash); // alocação dinamica
+    for (int i = 0; i < tamanhoTabelaHash; i++) {// iniciamos a tabela com -1 (para indicar as posições vazias)
+        TabelaHash[i].chave = -1;
+    }
 
-        for(int i = 0; i < 10; i++){
+    int escolha = 0;
 
-            TabelaHash[i] = -1;
+    while (escolha != 4) {
+        printf("\nMENU:\n");
+        printf("1. Cadastrar um funcionario\n");
+        printf("2. Imprimir a Tabela Hash\n");
+        printf("3. Procurar um codigo do funcionario na tabela Hash\n");
+        printf("4. Sair\n");
+
+        printf("\nEscolha uma opcao: ");
+        cin >> escolha;
+
+        switch (escolha) {
+            case 1: {
+                int chave, idade;
+                float salario;
+
+                printf("\nDigite a chave que devera ser inserida: ");
+                cin >> chave;
+
+                printf("Digite a idade correspondente a chave: ");
+                cin >> idade;
+
+                printf("Digite o salario correspondente a chave: ");
+                cin >> salario;
+
+                inserirNaTabelaHash(TabelaHash, chave, idade, salario, tamanhoTabelaHash);
+                break;
+            }
+            case 2:
+                imprimirTabelaHash(TabelaHash, tamanhoTabelaHash);
+                break;
+            case 3: {
+                int chave;
+                printf("\nDigite a chave que voce deseja procurar: ");
+                cin >> chave;
+                int resultado = ProcurarNaTabelaHash(TabelaHash, chave, tamanhoTabelaHash);
+                if (resultado >= 0) {
+                    printf("A chave procurada esta no indice %d\n", resultado);
+                    printf("Idade: %d | Salario: %.2f\n", TabelaHash[resultado].idade, TabelaHash[resultado].salario);
+                } else {
+                    printf("Funcionario inexistente\n");
+                }
+                break;
+            }
+            case 4:
+                printf("\nSaindo do programa...\n");
+                break;
+            default:
+                printf("\nOpcao invalida\n");
+                break;
         }
+    }
 
-    int chave = 0;
-    int resultado;
-    int idade;
-    float salario;
-    int codigo;
-
-        while(chave != -1){
-            printf("\n Digite o numero que devera ser inserido:");
-            cin >> chave;
-            printf("\n Digite o numero que devera ser inserido:");
-            cin >> idade;
-            printf("\n Digite o numero que devera ser inserido:");
-            cin >> salario;
-            printf("\n Digite o numero que devera ser inserido:");
-            cin >> codigo;
-
-            resultado = inserirNaTabelaHash(TabelaHash,chave,tamahoTabelaHash,idade,salario,codigo);
-            if(resultado >=0){
-                printf(" \n-- Chave inserido com sucesso -- \n");
-                imprimirTabelaHash(TabelaHash,tamahoTabelaHash,idade,salario,codigo);
-            }else if(resultado == -2){
-                printf(" \n-- Nao existe espaco livre na tabela hash -- \n");
-             }else{
-                printf(" -- Chave ja existe -- \n");
-              }
-        }
-
-        printf(" Buscar na tabela Hash \n");
-        chave = 0;
-
-        while(chave != -1){
-
-            printf("Digite a chave que voce deseja procurar: \n");
-            cin >> chave;
-
-            resultado = ProcurarNaTabelaHash(TabelaHash,chave,tamahoTabelaHash);
-            if(resultado >= 0){
-                printf("A chave procurada esta no indice %d \n",resultado);
-                imprimirTabelaHash(TabelaHash,tamahoTabelaHash);
-            }else printf("Chave nao localizada \n");
-
-        }
-
-        return 1;
-        }
+    free(TabelaHash);
+    return 0;
+}
