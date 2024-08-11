@@ -4,7 +4,7 @@
 /*Classe da pratica 01 */
 
 
-public class Triangulo{
+public class Triangulo {
 
     //Atributos da Classe
     float lado1;
@@ -24,7 +24,7 @@ public class Triangulo{
         boolean resultado;
             if((lado1 == lado2) && (lado2 == lado3)){
                 resultado = true;
-            }else resuldado = false;
+            }else resultado = false;
         return resultado;
     }
 
