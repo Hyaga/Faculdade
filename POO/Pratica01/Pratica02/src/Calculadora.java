@@ -1,22 +1,43 @@
 public class Calculadora {
 	
 	// Atributos
-	int numero1;
-	int numero2;
+	float numero1;
+	float numero2;
 	
 	
 	//Construtor
-	Calculadora(int n1, int n2)
+	Calculadora(float primeiro, float segundo)
 	{
-		numero1 = n1;
-		numero2 = n2;
+		numero1 = primeiro;
+		numero2 = segundo;
 	}
 	
-	int Soma() 
+
+	float Soma() 
 	{
-		int soma;
+		float soma;
 		soma = numero1 + numero2;
 		return soma;
 	}
 	
+	float Subtracao()
+	{
+		float subtracao;
+		subtracao = numero1 - numero2;
+		return subtracao;
+	}
+	
+	float Media() 
+	{
+		float media;
+		media = numero1 * numero2;
+		return media;
+	}
+	
+	float Divisao()
+	{
+		float divisao;
+		divisao = numero1/numero2;
+		return divisao;
+	}
 }
