@@ -19,6 +19,6 @@ public class MainExercicio01 {
 
         objeto1 = new Triangulo(lado1,lado2,lado3); // Intancia do objeto triangulo , com os atributos digitados a cima 
 
-        System.out.println("\n O perimeto do Triangulo e " + objeto1.calcularPerimetro());
+        System.out.println("\nO perimeto do Triangulo e " + objeto1.calcularPerimetro());
     }
 }
