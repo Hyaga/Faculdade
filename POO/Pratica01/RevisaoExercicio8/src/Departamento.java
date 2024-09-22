@@ -9,19 +9,25 @@ public class Departamento {
         this.funcionarios = new ArrayList<>();
     }
 
-    // Adicionar funcionário
+    public String getNome() {
+        return nome;
+    }
+
     public void adicionarFuncionario(Funcionario funcionario) {
-        if (nome.equalsIgnoreCase("T.I")) {
-            funcionario.aplicarAumento(10); // Aumento de 10% se o departamento for T.I
+        // Aumento de 10% se o departamento for T.I
+        if (this.nome.equalsIgnoreCase("T.I")) {
+            funcionario.setSalario(funcionario.getSalario() * 1.1);
         }
         funcionarios.add(funcionario);
     }
 
-    // Listar funcionários
     public void listarFuncionarios() {
-        System.out.println("Funcionários do departamento " + nome + ":");
-        for (Funcionario f : funcionarios) {
-            System.out.println(f);
+        if (funcionarios.isEmpty()) {
+            System.out.println("Nenhum funcionário cadastrado.");
+        } else {
+            for (Funcionario func : funcionarios) {
+                System.out.println("Funcionário: " + func.getNome() + ", Salário: " + func.getSalario());
+            }
         }
     }
 }

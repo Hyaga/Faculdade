@@ -1,46 +1,112 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Criando empresas
-        Empresa empresa1 = new Empresa("Tech Solutions", "12.345.678/0001-90");
-        Empresa empresa2 = new Empresa("Innovative Services", "98.765.432/0001-00");
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Empresa> empresas = new ArrayList<>();
 
-        // Criando departamentos
-        Departamento ti1 = new Departamento("T.I");
-        Departamento ti2 = new Departamento("Desenvolvimento");
-        Departamento hr = new Departamento("Recursos Humanos");
+        while (true) {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Cadastrar Empresa");
+            System.out.println("2. Cadastrar Departamento");
+            System.out.println("3. Cadastrar Funcionário");
+            System.out.println("4. Listar Empresas");
+            System.out.println("5. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpa o buffer
 
-        // Adicionando funcionários ao departamento T.I da empresa 1
-        ti1.adicionarFuncionario(new Funcionario("Alice", 3000, LocalDate.of(2022, 1, 15)));
-        ti1.adicionarFuncionario(new Funcionario("Bob", 3200, LocalDate.of(2021, 6, 22)));
+            switch (opcao) {
+                case 1:
+                    // Cadastrar Empresa
+                    System.out.print("Digite o nome da empresa: ");
+                    String nomeEmpresa = scanner.nextLine();
+                    System.out.print("Digite o CNPJ da empresa: ");
+                    String cnpj = scanner.nextLine();
+                    empresas.add(new Empresa(nomeEmpresa, cnpj));
+                    System.out.println("Empresa cadastrada com sucesso!");
+                    break;
 
-        // Adicionando funcionários ao departamento de Desenvolvimento da empresa 1
-        ti2.adicionarFuncionario(new Funcionario("Carlos", 3500, LocalDate.of(2020, 3, 30)));
+                case 2:
+                    // Cadastrar Departamento
+                    System.out.print("Digite o nome da empresa onde o departamento será cadastrado: ");
+                    String nomeEmpresaParaDept = scanner.nextLine();
+                    Empresa empresaDept = encontrarEmpresa(empresas, nomeEmpresaParaDept);
+                    if (empresaDept != null) {
+                        System.out.print("Digite o nome do departamento: ");
+                        String nomeDept = scanner.nextLine();
+                        empresaDept.adicionarDepartamento(new Departamento(nomeDept));
+                        System.out.println("Departamento cadastrado com sucesso!");
+                    } else {
+                        System.out.println("Empresa não encontrada!");
+                    }
+                    break;
 
-        // Adicionando funcionários ao departamento de Recursos Humanos da empresa 1
-        hr.adicionarFuncionario(new Funcionario("Diana", 4000, LocalDate.of(2019, 5, 10)));
+                case 3:
+                    // Cadastrar Funcionário
+                    System.out.print("Digite o nome da empresa onde o funcionário será cadastrado: ");
+                    String nomeEmpresaParaFunc = scanner.nextLine();
+                    Empresa empresaFunc = encontrarEmpresa(empresas, nomeEmpresaParaFunc);
+                    if (empresaFunc != null) {
+                        System.out.print("Digite o nome do departamento onde o funcionário será cadastrado: ");
+                        String nomeDeptParaFunc = scanner.nextLine();
+                        Departamento departamentoFunc = encontrarDepartamento(empresaFunc, nomeDeptParaFunc);
+                        if (departamentoFunc != null) {
+                            System.out.print("Digite o nome do funcionário: ");
+                            String nomeFunc = scanner.nextLine();
+                            System.out.print("Digite o salário do funcionário: ");
+                            double salarioFunc = scanner.nextDouble();
+                            scanner.nextLine(); // Limpa o buffer
+                            System.out.print("Digite a data de admissão (YYYY-MM-DD): ");
+                            LocalDate dataAdmissao = LocalDate.parse(scanner.nextLine());
+                            Funcionario funcionario = new Funcionario(nomeFunc, salarioFunc, dataAdmissao);
+                            departamentoFunc.adicionarFuncionario(funcionario);
+                            System.out.println("Funcionário cadastrado com sucesso!");
+                        } else {
+                            System.out.println("Departamento não encontrado!");
+                        }
+                    } else {
+                        System.out.println("Empresa não encontrada!");
+                    }
+                    break;
 
-        // Adicionando departamentos à empresa 1
-        empresa1.adicionarDepartamento(ti1);
-        empresa1.adicionarDepartamento(ti2);
-        empresa1.adicionarDepartamento(hr);
+                case 4:
+                    // Listar Empresas
+                    for (Empresa emp : empresas) {
+                        System.out.println("\n--- Informações da Empresa: " + emp.getNome() + " ---");
+                        emp.listarDepartamentosInformacao();
+                    }
+                    break;
 
-        // Repetindo o processo para a empresa 2
-        Departamento ti3 = new Departamento("T.I");
-        Departamento marketing = new Departamento("Marketing");
+                case 5:
+                    // Sair
+                    System.out.println("Saindo do sistema...");
+                    scanner.close();
+                    return;
 
-        ti3.adicionarFuncionario(new Funcionario("Eve", 3300, LocalDate.of(2022, 2, 15)));
-        marketing.adicionarFuncionario(new Funcionario("Frank", 2800, LocalDate.of(2021, 7, 19)));
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
 
-        empresa2.adicionarDepartamento(ti3);
-        empresa2.adicionarDepartamento(marketing);
+    private static Empresa encontrarEmpresa(ArrayList<Empresa> empresas, String nome) {
+        for (Empresa empresa : empresas) {
+            if (empresa.getNome().equalsIgnoreCase(nome)) {
+                return empresa;
+            }
+        }
+        return null;
+    }
 
-        // Listando informações das empresas
-        System.out.println("\n--- Informações da Empresa 1 ---");
-        empresa1.listarDepartamentos();
-
-        System.out.println("\n--- Informações da Empresa 2 ---");
-        empresa2.listarDepartamentos();
+    private static Departamento encontrarDepartamento(Empresa empresa, String nome) {
+        for (Departamento departamento : empresa.listarDepartamentos()) {
+            if (departamento.getNome().equalsIgnoreCase(nome)) {
+                return departamento;
+            }
+        }
+        return null;
     }
 }

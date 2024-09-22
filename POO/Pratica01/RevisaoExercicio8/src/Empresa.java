@@ -11,16 +11,26 @@ public class Empresa {
         this.departamentos = new ArrayList<>();
     }
 
-    // Adicionar departamento
+    public String getNome() {
+        return nome;
+    }
+
     public void adicionarDepartamento(Departamento departamento) {
         departamentos.add(departamento);
     }
 
-    // Listar departamentos e seus funcionários
-    public void listarDepartamentos() {
-        System.out.println("Departamentos da empresa " + nome + ":");
-        for (Departamento d : departamentos) {
-            d.listarFuncionarios();
+    public ArrayList<Departamento> listarDepartamentos() {
+        return departamentos; // Retorna a lista de departamentos
+    }
+
+    public void listarDepartamentosInformacao() {
+        if (departamentos.isEmpty()) {
+            System.out.println("Nenhum departamento cadastrado.");
+        } else {
+            for (Departamento dept : departamentos) {
+                System.out.println("Departamento: " + dept.getNome());
+                dept.listarFuncionarios(); // Imprime os funcionários do departamento
+            }
         }
     }
 }

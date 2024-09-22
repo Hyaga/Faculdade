@@ -11,26 +11,27 @@ public class Funcionario {
         this.dataAdmissao = dataAdmissao;
     }
 
-    // Getters
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public double getSalario() {
         return salario;
     }
 
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
     public LocalDate getDataAdmissao() {
         return dataAdmissao;
     }
 
-    // Método para aplicar aumento
-    public void aplicarAumento(double percentual) {
-        salario += salario * (percentual / 100);
-    }
-
-    @Override
-    public String toString() {
-        return "Nome: " + nome + ", Salário: R$ " + String.format("%.2f", salario) + ", Data de Admissão: " + dataAdmissao;
+    public void setDataAdmissao(LocalDate dataAdmissao) {
+        this.dataAdmissao = dataAdmissao;
     }
 }
