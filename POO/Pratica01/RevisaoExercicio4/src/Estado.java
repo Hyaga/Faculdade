@@ -2,11 +2,8 @@ public class Estado {
     private String nome;
     private String sigla;
 
-    // Construtor
-    public Estado(String nome, String sigla) {
-        this.nome = nome;
-        this.sigla = sigla;
-    }
+    // Construtor vazio para permitir cadastro via teclado
+    public Estado() {}
 
     // Getters e Setters
     public String getNome() {
