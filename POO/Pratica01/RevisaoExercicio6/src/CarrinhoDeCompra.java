@@ -1,18 +1,19 @@
 import java.util.ArrayList;
 
 public class CarrinhoDeCompra {
-    private ArrayList<Produto> produtos;
+    private ArrayList<ItemCarrinho> itensCarrinho;
 
     // Construtor
     public CarrinhoDeCompra() {
-        this.produtos = new ArrayList<>();
+        this.itensCarrinho = new ArrayList<>();
     }
 
-    // Adicionar produto ao carrinho
+    // Adicionar produto ao carrinho com a quantidade
     public void adicionarProduto(Produto produto, int quantidade) {
         if (produto.getEstoque() >= quantidade) {
             produto.reduzirEstoque(quantidade);
-            produtos.add(produto);
+            ItemCarrinho item = new ItemCarrinho(produto, quantidade);
+            itensCarrinho.add(item);
             System.out.println(quantidade + " unidade(s) de " + produto.getNome() + " adicionada(s) ao carrinho.");
         } else {
             System.out.println("Estoque insuficiente para o produto " + produto.getNome());
@@ -21,35 +22,39 @@ public class CarrinhoDeCompra {
 
     // Remover produto do carrinho
     public void removerProduto(Produto produto) {
-        if (produtos.remove(produto)) {
-            System.out.println(produto.getNome() + " removido do carrinho.");
-        } else {
-            System.out.println("Produto não encontrado no carrinho.");
+        for (ItemCarrinho item : itensCarrinho) {
+            if (item.getProduto().equals(produto)) {
+                itensCarrinho.remove(item);
+                System.out.println(produto.getNome() + " removido do carrinho.");
+                return;
+            }
         }
+        System.out.println("Produto não encontrado no carrinho.");
     }
 
     // Exibir os produtos no carrinho
     public void exibirProdutos() {
-        if (produtos.isEmpty()) {
+        if (itensCarrinho.isEmpty()) {
             System.out.println("O carrinho está vazio.");
         } else {
             System.out.println("Produtos no carrinho:");
-            for (Produto p : produtos) {
-                System.out.println("- " + p.getNome() + " | Preço: R$ " + p.getPreco());
+            for (ItemCarrinho item : itensCarrinho) {
+                System.out.println("- " + item.getProduto().getNome() + " | Preço: R$ " + item.getProduto().getPreco() 
+                + " | Quantidade: " + item.getQuantidade());
             }
         }
     }
 
-    // Calcular o total do carrinho
+    // Calcular o total do carrinho com a quantidade de cada item
     public double calcularTotal() {
         double total = 0;
-        for (Produto p : produtos) {
-            total += p.getPreco();
+        for (ItemCarrinho item : itensCarrinho) {
+            total += item.calcularTotalItem();
         }
         return total;
     }
 
-    public ArrayList<Produto> getProdutos() {
-        return produtos;
+    public ArrayList<ItemCarrinho> getItensCarrinho() {
+        return itensCarrinho;
     }
 }
