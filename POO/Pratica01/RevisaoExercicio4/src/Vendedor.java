@@ -1,15 +1,9 @@
-import java.sql.Date;
-
 public class Vendedor extends Funcionario {
     private String equipe;
     private float salario;
 
-    // Construtor
-    public Vendedor(String nome, java.util.Date date, String cpf, Endereco endereco, String equipe, float salario) {
-        super(nome, date, cpf, endereco);
-        this.equipe = equipe;
-        this.salario = salario;
-    }
+    // Construtor vazio para permitir cadastro via teclado
+    public Vendedor() {}
 
     // Getters e Setters
     public String getEquipe() {
