@@ -5,14 +5,8 @@ public class Endereco {
     private String cep;
     private Cidade cidade;
 
-    // Construtor
-    public Endereco(String rua, int numero, String bairro, String cep, Cidade cidade) {
-        this.rua = rua;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.cep = cep;
-        this.cidade = cidade;
-    }
+    // Construtor vazio para permitir cadastro via teclado
+    public Endereco() {}
 
     // Getters e Setters
     public String getRua() {
