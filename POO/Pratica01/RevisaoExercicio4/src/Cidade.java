@@ -2,11 +2,8 @@ public class Cidade {
     private String nome;
     private Estado estado;
 
-    // Construtor
-    public Cidade(String nome, Estado estado) {
-        this.nome = nome;
-        this.estado = estado;
-    }
+    // Construtor vazio para permitir cadastro via teclado
+    public Cidade() {}
 
     // Getters e Setters
     public String getNome() {
