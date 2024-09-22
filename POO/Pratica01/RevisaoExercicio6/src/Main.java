@@ -80,7 +80,7 @@ public class Main {
                 case 4:
                     Pedido pedido = new Pedido(carrinho);
                     cliente.adicionarPedido(pedido);
-                    System.out.println("Compra finalizada com sucesso.");
+                    System.out.println("Compra finalizada com sucesso. Valor total: R$ " + pedido.getValorTotal());
                     carrinho = new CarrinhoDeCompra(); // Criar um novo carrinho para o cliente
                     break;
 
