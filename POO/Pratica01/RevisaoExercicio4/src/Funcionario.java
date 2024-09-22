@@ -7,12 +7,7 @@ public class Funcionario {
     private Endereco endereco;
 
     // Construtor
-    public Funcionario(String nome, Date nascimento, String cpf, Endereco endereco) {
-        this.nome = nome;
-        this.nascimento = nascimento;
-        this.cpf = cpf;
-        this.endereco = endereco;
-    }
+    public Funcionario() {}
 
     // Getters e Setters
     public String getNome() {
