@@ -13,6 +13,10 @@ public class Main {
         hotel.adicionarQuarto(new Quarto(102, "casal", 250.0));
         hotel.adicionarQuarto(new Quarto(103, "solteiro", 150.0));
         hotel.adicionarQuarto(new Quarto(104, "casal", 250.0));
+        hotel.adicionarQuarto(new Quarto(201, "solteiro", 250.0));
+        hotel.adicionarQuarto(new Quarto(202, "casal", 350.0));
+        hotel.adicionarQuarto(new Quarto(203, "casal", 450.0));
+        hotel.adicionarQuarto(new Quarto(204, "Switch", 550.0));
 
         int opcao;
         do {
