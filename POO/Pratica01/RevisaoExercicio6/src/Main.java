@@ -8,6 +8,9 @@ public class Main {
         Produto produto1 = new Produto("Laptop", 3500.0, 10);
         Produto produto2 = new Produto("Mouse", 50.0, 100);
         Produto produto3 = new Produto("Teclado", 150.0, 50);
+        Produto produto4 = new Produto("Memorias RAM",100.0,100);
+        Produto produto5 = new Produto("HDS",250.0,50);
+        
 
         // Criação de um carrinho e um cliente
         CarrinhoDeCompra carrinho = new CarrinhoDeCompra();
