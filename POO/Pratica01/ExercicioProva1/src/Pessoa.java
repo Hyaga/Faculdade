@@ -1,29 +1,14 @@
-class Pessoa {
+public class Pessoa {
+    // Atributos comuns que podem ser herdados
     private String nome;
-    private String telefone;
-    private Endereco endereco;
-    private Cidade cidade;
-    private Estado estado;
 
     // Construtor da classe Pessoa
-    public Pessoa(String nome, String telefone, Endereco endereco, Cidade cidade, Estado estado) {
+    public Pessoa(String nome) {
         this.nome = nome;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.cidade = cidade;
-        this.estado = estado;
     }
 
-    // Métodos Getters
+    // Método que retorna o nome (esse método vai para Contato)
     public String getNome() {
         return nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getEnderecoCompleto() {
-        return endereco.getRuaNumero() + ", " + cidade.getNomeCidade() + ", " + estado.getNome();
     }
 }

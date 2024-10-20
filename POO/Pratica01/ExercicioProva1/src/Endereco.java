@@ -1,4 +1,4 @@
-class Endereco {
+public class Endereco {
     private String ruaNumero;
 
     public Endereco(String ruaNumero) {

@@ -1,4 +1,4 @@
-class Cidade {
+public class Cidade {
     private String nomeCidade;
 
     public Cidade(String nomeCidade) {
